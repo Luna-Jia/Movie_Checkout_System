@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title> Browse Movie List </title>
+    <link rel="stylesheet" type="text/css" th:href="@{/resources/css/style.css}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <style>
+      .wider-form {
+        width: 100%;
+        max-width: 2000px;
+      }
+      .wider-form .release-date-column {
+        width: 120px;
+      }
+
+      .wider-form .description-column {
+        width: 250px;
+      }
+
+      .wider-form .small-column {
+        width: 30px;
+      }
+    </style>
+</head>
+
+
+<body>
+<form th:action="@{/list}" method="get" class="mt-4 wider-form">
+
+<div class="container">
+    <table class="table">
+    <thead>
+    <tr>
+        <th scope="col" class="release-date-column">Movie Title</th>
+        <th scope="col" >Year</th>
+        <th scope="col">Length</th>
+        <th scope="col">Genre</th>
+        <th scope="col" class="release-date-column">Release Date</th>
+        <th scope="col">Rating</th>
+        <th scope="col" class="description-column" >Description</th>
+        <th scope="col" class="small-column">Total Copies</th>
+        <th scope="col" class="small-column">Available Copies </th>
+
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr th:each="tempMovie: ${movieList}">
+
+        <td th:text="${tempMovie.title}"  />
+        <td th:text="${tempMovie.year}" />
+        <td th:text="${tempMovie.length}"/>
+        <td th:text="${tempMovie.genre}"/>
+        <td th:text="${#dates.format(tempMovie.releaseDate, 'yyyy-MM-dd')}"></td>
+        <td th:text="${tempMovie.rating}"/>
+        <td th:text="${tempMovie.description}"/>
+        <td th:text="${tempMovie.numbOfCopies}"/>
+        <td th:text="${tempMovie.availableCopies}"/>
+        <td>
+        <span th:if="${tempMovie != null && tempMovie.getAvailableCopies() > 0}">
+            <a th:href="@{/checkout(customerId=${customerId}, movieId=${tempMovie.id})}" class="btn btn-primary">Checkout</a>
+        </span>
+            <span th:if="${tempMovie == null || tempMovie.getAvailableCopies() == 0}">
+            Not available
+        </span>
+        </td>
+
+    </tr>
+    </tbody>
+</table>
+    <br>
+
+    <a th:href="@{/}"
+       class="btn btn-info btn-sm">
+        Back to Main
+    </a>
+
+    <br> <br>
+</div>
+</form>
+</body>
+</html>

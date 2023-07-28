@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title> Browse Movie List </title>
+    <link rel="stylesheet" type="text/css" th:href="@{/resources/css/style.css}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <style>
+      .wider-form {
+        width: 100%;
+        max-width: 2000px;
+      }
+      .wider-form .release-date-column {
+        width: 200px;
+      }
+
+      .wider-form .description-column {
+        width: 250px;
+      }
+
+      .wider-form .small-column {
+        width: 30px;
+      }
+    </style>
+</head>
+
+
+<body>
+
+<div class="container">
+
+    <form th:action="@{/searchMovie}" method="get" class="mt-4">
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col" class="release-date-column">Movie Title</th>
+            <th scope="col">Year</th>
+            <th scope="col">Length</th>
+            <th scope="col">Genre</th>
+            <th scope="col">Release Date</th>
+            <th scope="col">Rating</th>
+            <th scope="col">Description</th>
+            <th scope="col">total Copies</th>
+            <th scope="col">Available Copies </th>
+
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr th:each="movie : ${movieList}">
+            <td th:text="${movie.title}"></td>
+            <td th:text="${movie.year}"></td>
+            <td th:text="${movie.length}"></td>
+            <td th:text="${movie.genre}"></td>
+            <td th:text="${#dates.format(movie.releaseDate, 'yyyy-MM-dd')}"></td>
+            <td th:text="${movie.rating}"></td>
+            <td th:text="${movie.description}"></td>
+            <td th:text="${movie.numbOfCopies}"></td>
+            <td th:text="${movie.availableCopies}"></td>
+        </tr>
+        </tbody>
+    </table>
+    <br>
+
+    <a th:href="@{/}"
+       class="btn btn-info btn-sm">
+        Back to Main
+    </a>
+
+    </form>
+
+</div>
+</body>
+</html>
