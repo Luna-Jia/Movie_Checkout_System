@@ -1,7 +1,7 @@
 # Movie Checkout System 
 This project showcases a movie checkout system utilizing Java, Spring Boot, Thymeleaf, JPA, and Hibernate. The application allows users to browse movies, search movies, check out available copies, and return movies.
 
-## [Checkout the demo video here ^_^](https://youtu.be/6d_txkklSkQ?si=TrmbBMO0FDxyUhOS)
+## [:clapper: Checkout the demo video here ^_^](https://youtu.be/6d_txkklSkQ?si=TrmbBMO0FDxyUhOS)
 ## Home page
  <img width="1285" alt="截屏2024-05-02 下午2 41 54" src="https://github.com/Luna-Jia/movieCheckoutSystem/assets/73403516/74b74e9a-75e7-4f41-9653-f9f32a08aead">
 
